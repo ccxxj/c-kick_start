@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 const std::string red("\033[0;31m");
 const std::string reset("\033[0m");
@@ -13,7 +14,7 @@ bool check_char(std::string a)
         return false;
 }
 
-bool check_int(std::string a, long long &b)
+bool check_int(const std::string a, double &b)
 {
     int size = a.length();
     int count = 0;
@@ -29,7 +30,7 @@ bool check_int(std::string a, long long &b)
             std::cout << "the input overflows" << std::endl;
             return false;
         }
-        b = std::stoll(a);
+        b = std::strtod(a.c_str(), nullptr);
         if (b > INT_MAX || b < INT_MIN)
         {
             std::cout << "the input overflows" << std::endl;
@@ -41,7 +42,7 @@ bool check_int(std::string a, long long &b)
         return false;
 }
 
-bool check_float(std::string a, float &b)
+bool check_float(std::string a, double &b)
 {
     int size = a.length();
     int count = 0;
@@ -59,7 +60,8 @@ bool check_float(std::string a, float &b)
             }
             if (count == size - 2)
             {
-                b = std::stof(a);
+                // b = std::stod(a);
+                b = std::strtod(a.c_str(), nullptr);
                 std::cout << b << std::endl;
                 return true;
             }
@@ -98,7 +100,8 @@ bool check_double(std::string a, double &b)
             }
             if (count == size - 1)
             {
-                b = std::stod(a);
+                // b = std::stod(a);
+                b = std::strtod(a.c_str(), nullptr);
                 return true;
             }
     }
@@ -160,9 +163,8 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
         return 0;
-    long long b;
-    float c;
-    double d;
+    // long long b;
+    double c;
     int precision = 0;
     if (check_science(argv[1]))
         return 0;
@@ -176,17 +178,16 @@ int main(int argc, char **argv)
         std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(a) << std::endl;
         return 0;
     }
-    if (check_int(argv[1], b))
+    if (check_int(argv[1], c))
     {
         std::cout << red << "the input type is int" << std::endl;
-        cast_char(b);
+        cast_char(static_cast<int>(c));
         std::cout << reset << "int: " << argv[1] << std::endl;
-        std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(b) << "f" << std::endl;
-        std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(b) << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(c) << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(c) << std::endl;
         return 0;
     }
 
-    //check tmr, as if use stof it will lose accuracy easily, how to avoid?
     if (check_float(argv[1], c))
     {
         std::cout << red << "the input type is float" << std::endl;
@@ -203,22 +204,22 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    //check tmr, as if use stod it will lose accuracy easily, how to avoid?
-    if (check_double(argv[1], d))
+    if (check_double(argv[1], c))
     {
         std::cout << red << "the input type is double" << std::endl;
         precision = check_precision(argv[1]);
-        cast_char(static_cast<int>(d));
-        if (d > INT_MAX || d < INT_MIN)
+        cast_char(static_cast<int>(c));
+        if (c > INT_MAX || c < INT_MIN)
             std::cout << "int: value overflows" << std::endl;
         else
-            std::cout << "int: " << static_cast<int>(d) << std::endl;
+            std::cout << "int: " << static_cast<int>(c) << std::endl;
         if (precision == 0)
             precision = 1;
-        std::cout << std::fixed << std::setprecision(precision) << "float: " << static_cast<float>(d) <<  "f" << std::endl;
-        std::cout << std::fixed << std::setprecision(precision) << "double: " << d << std::endl;
+        std::cout << std::fixed << std::setprecision(precision) << "float: " << static_cast<float>(c) <<  "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(precision) << "double: " << c << std::endl;
         return 0;
     }
     std::cout << red << "input does not make sense" << std::endl;
+    std::cout << reset;
     return 0;
 }
