@@ -3,22 +3,22 @@ This is a c++ boot camp learning modules, where I dived into c++ gradually, also
 
 Topics covered include:
 
-  Classes and objects
-  References and pointers
-  Inheritance
-  Abstraction
-  Encapsulation
-  Interfaces
-  Ad-hoc polymorphism
-  Subtype polymorphism
-  Overloading
-  Exception Handling
-  Casting
-  Function and class templates
-  File streams
-  Standard Template Library (STL)
+- Classes and objects
+- References and pointers
+- Inheritance
+- Abstraction
+- Encapsulation
+- Interfaces
+- Ad-hoc polymorphism
+- Subtype polymorphism
+- Overloading
+- Exception Handling
+- Casting
+- Function and class templates
+- File streams
+- Standard Template Library (STL)
   
-  Useful resources along the learning journey:
+Useful resources along the learning journey:
   http://www.cplusplus.com/reference/
   https://www.learncpp.com/
   https://isocpp.org/faq
