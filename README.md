@@ -19,7 +19,7 @@ Topics covered include:
 - Standard Template Library (STL)
   
 Useful resources along the learning journey:
-  http://www.cplusplus.com/reference/
-  https://www.learncpp.com/
-  https://isocpp.org/faq
+- http://www.cplusplus.com/reference/
+- https://www.learncpp.com/
+- https://isocpp.org/faq
   
